@@ -1,5 +1,5 @@
 {
-    "name": "cop-cos/guzzle-sdk",
+    "name": "cop-cos/cop-guzzle-sdk",
     "version": "0.2.1",
     "description": "COSCOShipping COP SDK - PHP version",
     "type": "library",
