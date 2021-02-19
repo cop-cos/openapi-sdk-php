@@ -1,12 +1,12 @@
 {
     "name": "cop-cos/cop-guzzle-sdk",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "description": "COSCOShipping COP SDK - PHP version",
     "type": "library",
     "keywords": [
         "COP","SDK"
     ],
-    "homepage": "https://github.com/cop-cos/COP/",
+    "homepage": "https://github.com/cop-cos/openapi-sdk-php",
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.2",
