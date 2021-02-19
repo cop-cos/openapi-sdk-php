@@ -9,7 +9,7 @@
     "homepage": "https://github.com/cop-cos/openapi-sdk-php",
     "license": "Apache-2.0",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.0",
         "ext-openssl": "*"
     },
     "require-dev": {

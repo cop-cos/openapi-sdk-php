@@ -1,20 +1,37 @@
 # An implementation of PHP for COP SDK
 
 
-# Install
+## Install
 
-To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `^`.
+* To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `^`.
 
+```shell
+	composer require cop-cos/cop-guzzle-sdk
 ```
-composer require cop-cos/cop-guzzle-sdk
+
+* To install via composer.json.
+
+```json
+    "require": {
+        "cop-cos/cop-guzzle-sdk": "^1.0.0"
+    }
+```
+And perform installation:
+
+```shell
+	composer install
 ```
 
-# Usage
+## Requirements
+
++ PHP 7.0+
++ guzzlehttp/guzzle 7.2+
+
+## Usage
 
 
 ```php
 <?php
-require_once 'vendor/autoload.php';
 use COP\Client\COPClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
@@ -31,7 +48,7 @@ $httpClient = new \GuzzleHttp\Client(['handler' => $stack]);
 /****************************************************************/
 
 try {
-    $resp = $httpClient->request('GET', 'https://api-pp.lines.coscoshipping.com/service/info/tracking/6103622780?numberType=bl', [ // 注意替换为实际URL
+    $resp = $httpClient->request('GET', 'https://api-pp.lines.coscoshipping.com/service/info/tracking/6103622780?numberType=bl', [ // replace with actual URL
         'headers' => [
             'Accept' => 'application/json'
         ]
@@ -40,7 +57,7 @@ try {
     echo $resp->getStatusCode() . ' ' . $resp->getReasonPhrase() . "\n";
     echo $resp->getBody() . "\n";
 } catch (RequestException $e) {
-    // 进行错误处理
+    // handle exception.
     echo $e->getMessage() . "\n";
     if ($e->hasResponse()) {
         echo $e->getResponse()->getStatusCode() . ' ' . $e->getResponse()->getReasonPhrase() . "\n";
@@ -50,7 +67,7 @@ try {
 }
 ```
 
-# License
+## License
 
 The MIT License (MIT)
 
