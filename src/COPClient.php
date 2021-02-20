@@ -82,6 +82,9 @@ class COPClient
     {
         $this->credentials = $credentials;
         $this->validator = $validator;
+        $this->stack = NULL;
+        $this->copBaseUri = NULL;
+        $this->httpClient = NULL;
     }
     /**
      * Specify COP base uri.
@@ -110,6 +113,7 @@ class COPClient
             $this->stack->remove("cop.request.inteceptor001");
             $this->stack->remove("cop.request.inteceptor002");
             $this->stack->remove("cop.response.inteceptor001");
+            $this->stack = NULL;            
         }
         return $this;
     }
@@ -117,7 +121,7 @@ class COPClient
         return $this->stack;
     }
     /**
-     * Sets \GuzzleHttp\HandlerStack $stack
+     * Sets \GuzzleHttp\HandlerStack $stack, add COPClient customized interceptors into HttpHandlerStack¡£
      * @param \GuzzleHttp\HandlerStack $stack
      * @return $this
      */

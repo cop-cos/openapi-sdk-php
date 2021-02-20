@@ -34,6 +34,9 @@ class COPClientBuilder
      */
     public function __construct()
     {
+        $this->credentials = NULL;
+        $this->validator = NULL;
+        $this->stack = NULL;
         $this->withValidator(new COPNoopValidator());
     }
     /**
@@ -89,7 +92,7 @@ class COPClientBuilder
         return $this;
     }
 
-    protected \GuzzleHttp\HandlerStack $stack;
+    protected ?\GuzzleHttp\HandlerStack $stack;
     /**
      * Sets \GuzzleHttp\HandlerStack $stack
      * @param \GuzzleHttp\HandlerStack $stack
