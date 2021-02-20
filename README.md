@@ -3,17 +3,14 @@
 
 ## Install
 
-* To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `^`.
-
-```shell
-	composer require cop-cos/cop-guzzle-sdk
-```
-
-* To install via composer.json.
+* To install via [Composer](http://getcomposer.org/) composer.json.
 
 ```json
     "require": {
-        "cop-cos/cop-guzzle-sdk": "^1.0.0"
+        "php": ">=7.0",
+        "ext-openssl": "*",
+        "guzzlehttp/guzzle": ">=7.2",
+        "cop-cos/cop-guzzle-sdk":">=1.0.0"
     }
 ```
 And perform installation:
@@ -32,23 +29,26 @@ And perform installation:
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
 use COP\Client\COPClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
+
 /****************************************************************
  * Setting up HttpClient ...
  ***************************************************************/
 $stack = HandlerStack::create();
 
-$copClient = COPClient::builder('YOUR Api Key', 'YOUR Secret Key')->build();
-
-$copClient->register($stack);
-
 $httpClient = new \GuzzleHttp\Client(['handler' => $stack]);
+
+$copClient = \COP\Client\COPClient::builder('YOUR_API_KEY', 'YOUR_SECRET_KEY')->withHttpHandlerStack($stack)->build();
+
 /****************************************************************/
 
 try {
-    $resp = $httpClient->request('GET', 'https://api-pp.lines.coscoshipping.com/service/info/tracking/6103622780?numberType=bl', [ // replace with actual URL
+    $resp = $httpClient->request('GET', 'https://api.lines.coscoshipping.com/service/info/tracking/6103622780?numberType=bl', [ 
+        // Replace with actual URL
         'headers' => [
             'Accept' => 'application/json'
         ]
@@ -57,7 +57,6 @@ try {
     echo $resp->getStatusCode() . ' ' . $resp->getReasonPhrase() . "\n";
     echo $resp->getBody() . "\n";
 } catch (RequestException $e) {
-    // handle exception.
     echo $e->getMessage() . "\n";
     if ($e->hasResponse()) {
         echo $e->getResponse()->getStatusCode() . ' ' . $e->getResponse()->getReasonPhrase() . "\n";
