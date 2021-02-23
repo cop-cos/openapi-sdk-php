@@ -31,7 +31,7 @@ class COPClient
      *
      * @var string
      */
-    const VERSION = "0.2.0";
+    const VERSION = "1.0.1";
     /**
      * COP Supported HTTP Version
      */
@@ -121,12 +121,17 @@ class COPClient
         return $this->stack;
     }
     /**
-     * Sets \GuzzleHttp\HandlerStack $stack, add COPClient customized interceptors into HttpHandlerStack¡£
+     * Sets \GuzzleHttp\HandlerStack $stack, add COPClient customized interceptors into HttpHandlerStackï¿½ï¿½
      * @param \GuzzleHttp\HandlerStack $stack
      * @return $this
      */
-    public function withHttpHandlerStack(\GuzzleHttp\HandlerStack $stack) {
+    public function withHttpHandlerStack(?\GuzzleHttp\HandlerStack $stack) {
         $this->removeHandlerStack();
+        // Check parameter.
+        if(!isset($this->stack) || $this->stack === NULL ) {
+            // Unset
+            return $this;
+        }
         $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
 
             if (!self::isCOPApiUrl($request->getUri())) {

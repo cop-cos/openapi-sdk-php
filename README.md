@@ -51,7 +51,8 @@ try {
         // Replace with actual URL
         'headers' => [
             'Accept' => 'application/json'
-        ]
+        ],
+        'version' => 1.1
     ]);
 
     echo $resp->getStatusCode() . ' ' . $resp->getReasonPhrase() . "\n";
