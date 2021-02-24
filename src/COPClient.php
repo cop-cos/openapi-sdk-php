@@ -117,7 +117,7 @@ class COPClient
         }
         return $this;
     }
-    public function getHttpHandlerStack():\GuzzleHttp\HandlerStack {
+    public function getHttpHandlerStack():?\GuzzleHttp\HandlerStack {
         return $this->stack;
     }
     /**
@@ -248,7 +248,7 @@ class COPClient
             throw new \InvalidArgumentException('handler must be a callable');
         }
         if($this->httpClient === NULL) {
-            $this->httpClient= new \GuzzleHttp\Client($config);
+            $this->httpClient = new \GuzzleHttp\Client($config);
         }
         return $this->httpClient;
     }
