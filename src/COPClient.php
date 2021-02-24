@@ -207,7 +207,7 @@ class COPClient
     protected static function getUserAgent()
     {
         static $userAgent = '';
-        if (!$userAgent) {
+        if (!isset($userAgent) || $userAgent === '' ||$userAgent===NULL) {
             $agent = 'COP-Guzzle/'.self::VERSION;
             if (\class_exists('\\GuzzleHttp\\Client')) {
                 $version = defined('\\GuzzleHttp\\Client::VERSION') ? \GuzzleHttp\Client::VERSION
