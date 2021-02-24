@@ -40,10 +40,9 @@ use GuzzleHttp\HandlerStack;
  ***************************************************************/
 $stack = HandlerStack::create();
 
-$httpClient = new \GuzzleHttp\Client(['handler' => $stack]);
-
 $copClient = \COP\Client\COPClient::builder('YOUR_API_KEY', 'YOUR_SECRET_KEY')->withHttpHandlerStack($stack)->build();
 
+$httpClient = new \GuzzleHttp\Client(['handler' => $stack]);
 /****************************************************************/
 
 try {

@@ -128,7 +128,7 @@ class COPClient
     public function withHttpHandlerStack(?\GuzzleHttp\HandlerStack $stack) {
         $this->removeHandlerStack();
         // Check parameter.
-        if(!isset($this->stack) || $this->stack === NULL ) {
+        if(!isset($stack) || $stack === NULL ) {
             // Unset
             return $this;
         }
@@ -139,8 +139,8 @@ class COPClient
             }
 
             //Checking HTTP Version
-            if($request->getProtocolVersion()!==self::HTTP_VERSION) {
-                throw new \UnexpectedValueException("Unsupported HTTP version:".$request->getProtocolVersion().". Only HTTP/1.1 supported.");
+            if(("".$request->getProtocolVersion()."")!==self::HTTP_VERSION) {
+                throw new \UnexpectedValueException("Unsupported HTTP version:" . $request->getProtocolVersion() . ", only HTTP/1.1 is supported.");
             }
             
             if (self::isUserAgentOverwritable($request)) {
