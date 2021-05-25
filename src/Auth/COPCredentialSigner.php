@@ -121,8 +121,8 @@ class COPCredentialSigner implements Signer
         $guid = $this->uuid($this->getNonce());
         $guidMd5 = md5($guid . uniqid(md5(microtime(true)), true));
         
-        //$guidMd5="939c5596e01d452b0daef30c5d08bf0e";
-        $date = date(DATE_RFC7231, $this->getTimestamp());
+        //Force using GMT timezone.
+        $date = gmdate(DATE_RFC7231, $this->getTimestamp());
         
         $digest = "SHA-256=" . base64_encode(hash('sha256', $body, true));
         
